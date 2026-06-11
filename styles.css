@@ -1,0 +1,661 @@
+*{
+  font-family:"Montserrat",sans-serif;
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+
+body{
+  margin:0;
+  padding:0;
+  background:transparent;
+}
+
+#ggWidgetShell{
+  position:relative;
+  width:100%;
+  max-width:1280px;
+  margin:10px auto 20px;
+}
+
+/* PRICING CALCULATOR */
+#pricingCalculator{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:24px;
+  padding:0 12px;
+}
+
+.calcLeft,
+.calcRight{
+  background:#ffffffee;
+  border-radius:30px;
+  padding:24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+}
+
+.calcLeft{
+  position:relative;
+  border-top:8px solid #122345;
+  transition:border-color .25s ease;
+}
+
+.calcLeft.borderSkill{
+  border-top:8px solid #bebe7b;
+}
+
+.calcLeft.borderBoth{
+  border-top:8px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(to right, #bebe7b 50%, #122345 50%) border-box;
+}
+
+.calcRight{
+  position:relative;
+  border-top:8px solid rgba(18,35,69,.10);
+  overflow:hidden;
+}
+
+.calcLabel{
+  font-size:1rem;
+  font-weight:700;
+  color:#122345;
+  margin-bottom:14px;
+}
+
+.calcSubLabel{
+  font-size:.78rem;
+  font-weight:500;
+  color:#00000055;
+  margin-bottom:14px;
+  margin-top:-4px;
+  line-height:1.45;
+}
+
+.bundleNotice{
+  display:none;
+  margin-top:14px;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(18,35,69,.05);
+  border-left:3px solid rgba(18,35,69,.2);
+  font-size:.82rem;
+  line-height:1.45;
+  font-weight:600;
+  color:#122345;
+  text-align:left;
+}
+
+.calcSection{
+  margin-bottom:24px;
+}
+
+.calcSection:first-child .toggleWrap {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.calcSection:first-child .toggleWrap .toggleRow {
+  flex: 1 1 auto;
+  min-width: 180px;
+}
+
+/* Reset button row */
+.resetRow{
+  margin-top:4px;
+  display:flex;
+  justify-content:flex-start;
+}
+
+#resetBtn{
+  border:none;
+  background:none;
+  color:#00000044;
+  font-size:.8rem;
+  font-weight:600;
+  cursor:pointer;
+  padding:4px 0;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  transition:.15s ease;
+}
+
+#resetBtn:hover{
+  color:#122345;
+}
+
+/* PRICE ICONS */
+.priceIcons{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin-bottom:20px;
+  min-height:36px;
+}
+
+.priceIconGroup{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.priceIconImg{
+  width:30px;
+  height:30px;
+  object-fit:contain;
+  opacity:.85;
+}
+
+.priceIconDivider{
+  display:none;
+  width:1px;
+  height:24px;
+  background:rgba(18,35,69,.15);
+  margin:0 4px;
+}
+
+/* PRICE CARD */
+.priceCard{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding-top:32px;
+}
+
+.priceTop{
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#00000055;
+  margin-bottom:14px;
+}
+
+.bigPrice{
+  position:relative;
+  font-size:4.5rem;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-0.05em;
+  color:#122345;
+  margin-bottom:14px;
+}
+
+.priceBreakdown{
+  max-width:300px;
+  font-size:.9rem;
+  line-height:1.6;
+  color:#00000066;
+}
+
+#pricingNotice{
+  margin-top:16px;
+  min-height:28px;
+  font-size:.88rem;
+  line-height:1.7;
+  font-weight:600;
+  color:#122345;
+  text-align:center;
+}
+
+#tierNudge{
+  display:none;
+  margin-top:-6px;
+  margin-bottom:8px;
+  max-width:360px;
+  padding:0;
+  background:transparent;
+  border:none;
+  color:#122345;
+  font-size:.88rem;
+  line-height:1.55;
+  font-weight:600;
+  text-align:center;
+}
+
+#tierNudge strong{
+  color:#831f16;
+  font-weight:800;
+}
+
+/* Group tier colors */
+#ggWidgetShell.groupMode.tierSmall .bigPrice{ color:#b04239; }
+#ggWidgetShell.groupMode.tierMedium .bigPrice{ color:#c47a1e; }
+#ggWidgetShell.groupMode.tierLarge .bigPrice{ color:#6b6b30; }
+#ggWidgetShell:not(.groupMode) .bigPrice{ color:#122345; }
+
+#ggWidgetShell.showTierNudge .bigPrice::after{
+  content:"*";
+  position:absolute;
+  top:-10px;
+  right:-16px;
+  font-size:1.6rem;
+  line-height:1;
+  font-weight:700;
+  color:#831f16;
+}
+
+/* CHOICE GRID */
+.choiceGrid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.skillBtn{
+  border:none;
+  background:#f4f6fa;
+  color:#122345;
+  padding:14px 18px;
+  border-radius:16px;
+  font-size:.95rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.skillBtn.active{
+  background:#bebe7b;
+  color:#122345;
+}
+
+#ggWidgetShell.groupMode .skillBtn.active{
+  background:#f4f6fa;
+  color:#122345;
+}
+
+#ggWidgetShell.groupMode .skillBtn.hasQty{
+  background:#bebe7b;
+  color:#122345;
+}
+
+/* TOGGLES */
+.toggleWrap{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.toggleRow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:1rem;
+  color:#122345;
+  font-weight:500;
+}
+
+.toggleRow input{
+  width:18px;
+  height:18px;
+}
+
+.toggleRow input:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.toggleRow.disabled input{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.toggleRow.disabled{
+  cursor:not-allowed;
+  position: relative;
+  align-self: flex-start;
+  width: auto;
+}
+
+.toggleRow.disabled span{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.toggleRow.disabled input{
+  pointer-events:none;
+}
+
+.toggleRow.disabled::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 21px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: max-content;
+  max-width: 280px;
+  background: #122345;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: .82rem;
+  line-height: 1.4;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s ease;
+  z-index: 999;
+  white-space: normal;
+  text-align: left;
+}
+
+.toggleRow.disabled::before {
+  content: "";
+  position: absolute;
+  left: calc(100% + 15px);
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #122345;
+  opacity: 0;
+  transition: .2s ease;
+  z-index: 999;
+}
+
+.toggleRow.disabled:hover::after,
+.toggleRow.disabled:hover::before{
+  opacity:1;
+}
+
+.infoIcon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:20px;
+  height:20px;
+  margin-left:8px;
+  border-radius:50%;
+  background: rgba(18,35,69,.08);
+  color: #122345;
+  font-size:.78rem;
+  font-weight:700;
+  cursor:default;
+  position: relative;
+}
+
+.infoIcon::after{
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: max-content;
+  max-width: 240px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #122345;
+  color: white;
+  font-size: .8rem;
+  line-height: 1.4;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 999;
+}
+
+.infoIcon:hover::after{
+  opacity: 1;
+  transform: translate(-50%, -110%);
+}
+
+.toggleRow.disabled .infoIcon{
+  display:none;
+}
+
+/* EVENT TOGGLE CARDS */
+.eventToggle{
+  position:relative;
+  display:block;
+  cursor:pointer;
+}
+
+.eventToggle input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.eventToggle span{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:62px;
+  padding:0 22px;
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,248,251,.98));
+  border:2px solid rgba(18,35,69,.08);
+  color:#122345;
+  font-size:.98rem;
+  font-weight:600;
+  transition:.22s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+}
+
+.eventToggle:hover span{
+  transform:translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+.eventToggle input:checked + span{
+  background: linear-gradient(90deg, rgba(24,112,137,.10), rgba(255,255,255,.98));
+  border-color:#187089;
+  color:#122345;
+  box-shadow: 0 12px 28px rgba(24,112,137,.12);
+}
+
+.eventToggle input:disabled + span{
+  opacity:.45;
+  cursor:not-allowed;
+  background:#eef1f5;
+  box-shadow:none;
+}
+
+.skillToggle input:checked + span{
+  background: linear-gradient(90deg, rgba(190,190,123,.10), rgba(255,255,255,.98));
+  border-color:#bebe7b;
+  color:#122345;
+  box-shadow: 0 12px 28px rgba(190,190,123,.12);
+}
+
+.skillToggle:hover span{
+  border-color:rgba(190,190,123,.18);
+}
+
+.globalToggle input:checked + span{
+  background: linear-gradient(90deg, rgba(18,35,69,.10), rgba(255,255,255,.98));
+  border-color:#122345;
+  color:#122345;
+  box-shadow: 0 12px 28px rgba(18,35,69,.12);
+}
+
+.globalToggle:hover span{
+  border-color:rgba(18,35,69,.18);
+}
+
+/* GROUP CONTROLS */
+.groupControls{
+  display:none;
+  margin-top:16px;
+}
+
+.rangeField{
+  gap:10px;
+  font-size:.92rem;
+  font-weight:600;
+  color:#122345;
+}
+
+.rangeField input[type="range"]{
+  width:100%;
+  cursor:pointer;
+  accent-color:#187089;
+}
+
+#ggWidgetShell.tierSmall .rangeField input[type="range"]{ accent-color:#b04239; }
+#ggWidgetShell.tierMedium .rangeField input[type="range"]{ accent-color:#c47a1e; }
+#ggWidgetShell.tierLarge .rangeField input[type="range"]{ accent-color:#6b6b30; }
+
+#ggWidgetShell.tierSmall #groupSizeValue{ color:#b04239; }
+#ggWidgetShell.tierMedium #groupSizeValue{ color:#c47a1e; }
+#ggWidgetShell.tierLarge #groupSizeValue{ color:#6b6b30; }
+
+.miniQty{
+  display:none;
+  width:72px;
+  min-width:72px;
+  padding:10px;
+  border-radius:12px;
+  border:2px solid rgba(18,35,69,.12);
+  background:#ffffff;
+  color:#122345;
+  font-size:.95rem;
+  font-weight:700;
+  text-align:center;
+  outline:none;
+}
+
+.miniQty:focus{
+  border-color:#187089;
+  box-shadow:0 0 0 3px rgba(24,112,137,.12);
+}
+
+.skillOptionGrid{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.skillOptionLine{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:1 1 220px;
+}
+
+.skillOptionLine .skillBtn{ flex:1; min-width:0; }
+.skillOptionLine .miniQty{ flex:0 0 72px; }
+
+.groupToggleRow{ margin-top:0; }
+.groupToggleRow span{ font-weight:500; }
+
+#ggWidgetShell.groupMode .groupControls{ display:block; }
+#ggWidgetShell.groupMode .skillQty{ display:block; }
+#ggWidgetShell.groupMode #ceuCheckRow{ align-items:center; justify-content:flex-start; }
+#ggWidgetShell.groupMode #ceuCheckRow > span:first-of-type{ flex:0 0 auto; }
+#ggWidgetShell.groupMode #ceuCheckRow .infoIcon{ margin-left:0; }
+#ggWidgetShell.groupMode #ceuCheckRow .ceuQty{ margin-left:4px; }
+#ggWidgetShell.groupMode #ceu:checked ~ .ceuQty{ display:block; }
+
+.eventToggle.lockedToggle{ pointer-events:none; }
+.eventToggle.lockedToggle span{ opacity:.72; cursor:not-allowed; }
+
+/* TIER NUDGE COLORS */
+#ggWidgetShell.tierSmall #tierNudge strong{ color:#b04239; }
+#ggWidgetShell.tierMedium #tierNudge strong{ color:#c47a1e; }
+#ggWidgetShell.tierLarge #tierNudge strong{ color:#6b6b30; }
+
+/* PRICE PANEL BACKGROUND IMAGE */
+.calcRight::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background-image:url('https://custom.cvent.com/AE944F71438646268B70FF5BF3772347/files/event/e7d15afcf2b14901ab0272ce8a401899/69cb72e4958c43b0b1f1a1e76b2712cb.png');
+  background-size:cover;
+  background-position:center top;
+  opacity:.20;
+  pointer-events:none;
+  z-index:0;
+}
+
+.calcRight > *{
+  position:relative;
+  z-index:1;
+}
+
+/* Remove checkbox mark from event toggle cards */
+.eventToggle > input[type="checkbox"]{
+  display:none !important;
+  appearance:none !important;
+  -webkit-appearance:none !important;
+}
+
+.eventToggle > span::before,
+.eventToggle > span::after,
+.eventToggle > input[type="checkbox"]:checked + span::before,
+.eventToggle > input[type="checkbox"]:checked + span::after{
+  content:none !important;
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+  background:none !important;
+  border:none !important;
+}
+
+/* CIRCLE CHECKBOXES (non-card toggles only) */
+.toggleRow > input[type="checkbox"]{
+  appearance:none;
+  -webkit-appearance:none;
+  width:20px;
+  height:20px;
+  min-width:20px;
+  border-radius:50%;
+  border:2.5px solid rgba(18,35,69,.25);
+  background:white;
+  cursor:pointer;
+  position:relative;
+  flex-shrink:0;
+  transition:.15s ease;
+}
+
+.toggleRow > input[type="checkbox"]:hover{
+  border-color:#122345;
+}
+
+.toggleRow > input[type="checkbox"]:checked{
+  background:#122345;
+  border-color:#122345;
+  box-shadow:0 2px 8px rgba(18,35,69,.25);
+}
+
+.toggleRow > input[type="checkbox"]:checked::after{
+  content:'';
+  position:absolute;
+  top:2px;
+  left:5.5px;
+  width:5px;
+  height:9px;
+  border:2px solid white;
+  border-top:none;
+  border-left:none;
+  transform:rotate(45deg);
+}
+
+.toggleRow > input[type="checkbox"]:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  #pricingCalculator{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+}
