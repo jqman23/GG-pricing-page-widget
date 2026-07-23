@@ -21,6 +21,7 @@ const groupSizeValue       = document.getElementById("groupSizeValue");
 const groupHalfSkillsInput = document.getElementById("groupHalfSkills");
 const groupFullSkillsInput = document.getElementById("groupFullSkills");
 const groupCeusInput       = document.getElementById("groupCeus");
+const groupSkillRegistrationMax = 50;
 
 const bundleNotice      = document.getElementById("bundleNotice");
 const registrationLabel = document.querySelector(".calcSection:first-child .calcLabel");
@@ -249,8 +250,8 @@ function updatePrice() {
     else if (groupSize >= 30) shell.classList.add("tierMedium");
     else                      shell.classList.add("tierSmall");
 
-    const halfSkills = clampNumber(groupHalfSkillsInput, 0, groupSize);
-    const fullSkills = clampNumber(groupFullSkillsInput, 0, groupSize);
+    const halfSkills = clampNumber(groupHalfSkillsInput, 0, groupSkillRegistrationMax);
+    const fullSkills = clampNumber(groupFullSkillsInput, 0, groupSkillRegistrationMax);
     const groupCeus  = ceuInput.checked ? clampNumber(groupCeusInput, 0, 15) : 0;
 
     groupHalfSkillsInput.closest(".skillOptionLine").querySelector(".skillBtn")
