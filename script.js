@@ -23,6 +23,11 @@ const groupFullSkillsInput = document.getElementById("groupFullSkills");
 const groupCeusInput       = document.getElementById("groupCeus");
 const groupSkillRegistrationMax = 50;
 
+const EARLY_BIRD_DEADLINE = new Date("2026-08-03T00:00:00");
+function isEarlyBirdActive() {
+  return new Date() < EARLY_BIRD_DEADLINE;
+}
+
 const bundleNotice      = document.getElementById("bundleNotice");
 const registrationLabel = document.querySelector(".calcSection:first-child .calcLabel");
 const priceTopLabel     = document.getElementById("priceTopLabel");
@@ -37,7 +42,7 @@ resetBtn.addEventListener("click", resetToDefaults);
 function resetToDefaults() {
   globalRegistration.checked = true;
   skillRegistration.checked  = false;
-  earlyBirdInput.checked     = true;
+  earlyBirdInput.checked     = isEarlyBirdActive();
   studentInput.checked       = false;
   livedInput.checked         = false;
   ceuInput.checked           = false;
@@ -81,7 +86,7 @@ globalRegistration.addEventListener("click", () => {
     globalRegistration.checked = true;
     skillRegistration.checked = false;
   }
-  if (globalRegistration.checked) earlyBirdInput.checked = true;
+  if (globalRegistration.checked) earlyBirdInput.checked = isEarlyBirdActive();
   updatePrice();
 });
 
@@ -360,6 +365,7 @@ function updatePrice() {
 }
 
 /* ── INIT ── */
+earlyBirdInput.checked = isEarlyBirdActive();
 updatePrice();
 document.getElementById("skillCountSection").style.display = "none";
 
