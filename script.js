@@ -156,7 +156,7 @@ function updatePrice() {
     studentInput.parentElement.setAttribute("data-tooltip", "Student Discounts do not typically factor into Group Registration pricing.");
     livedInput.parentElement.setAttribute("data-tooltip", "Lived Experience Scholarships apply to individual registrations.");
 
-    earlyBirdInfo.setAttribute("data-tooltip", "A 10% Early Bird discount is automatically applied to any 10+ group that completes the registration form before July 31. To complete the registration form groups only need to submit basic information about their organization.");
+    earlyBirdInfo.setAttribute("data-tooltip", "A 10% Early Bird discount is automatically applied to any 10+ group that completes the registration form before August 2. To complete the registration form groups only need to submit basic information about their organization.");
     ceuInfo.setAttribute("data-tooltip", "Select how many group members will claim CEUs. CEUs cost $50 per registrant.");
 
   } else {
@@ -176,7 +176,7 @@ function updatePrice() {
     studentInput.parentElement.removeAttribute("data-tooltip");
     livedInput.parentElement.removeAttribute("data-tooltip");
 
-    earlyBirdInfo.setAttribute("data-tooltip", "Participants have until July 31st to take advantage of the 10% Early Bird Discount.");
+    earlyBirdInfo.setAttribute("data-tooltip", "Participants have until August 2nd to take advantage of the 10% Early Bird Discount.");
     ceuInfo.setAttribute("data-tooltip", "Any number of CEUs can be earned at the Global Gathering for a flat $50 fee.");
 
     document.querySelectorAll(".skillBtn").forEach(btn => btn.classList.remove("hasQty"));
