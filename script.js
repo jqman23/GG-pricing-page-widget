@@ -181,7 +181,7 @@ function updatePrice() {
     studentInput.parentElement.removeAttribute("data-tooltip");
     livedInput.parentElement.removeAttribute("data-tooltip");
 
-    earlyBirdInfo.setAttribute("data-tooltip", "The Early Bird Discount ended August 2nd — pricing now reflects standard rates.");
+    earlyBirdInfo.setAttribute("data-tooltip", "The 10% Early-Bird discount ended on August 2nd.");
     ceuInfo.setAttribute("data-tooltip", "Any number of CEUs can be earned at the Global Gathering for a flat $50 fee.");
 
     document.querySelectorAll(".skillBtn").forEach(btn => btn.classList.remove("hasQty"));
