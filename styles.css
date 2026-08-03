@@ -296,6 +296,15 @@ body{
   height:18px;
 }
 
+.toggleRow.grayedOut{
+  color:#8a93a6;
+}
+
+.toggleRow.grayedOut .infoIcon{
+  background: rgba(138,147,166,.15);
+  color:#8a93a6;
+}
+
 .toggleRow input:disabled{
   opacity:.45;
   cursor:not-allowed;
@@ -650,6 +659,16 @@ body{
 .toggleRow > input[type="checkbox"]:disabled{
   opacity:.4;
   cursor:not-allowed;
+}
+
+.toggleRow.grayedOut > input[type="checkbox"]{
+  border-color:rgba(138,147,166,.5);
+}
+
+.toggleRow.grayedOut > input[type="checkbox"]:checked{
+  background:#8a93a6;
+  border-color:#8a93a6;
+  box-shadow:0 2px 8px rgba(138,147,166,.25);
 }
 
 /* RESPONSIVE */
